@@ -81,7 +81,7 @@ def check_vip(ticket,age,member):
         vip = "STANDARD ACCESS"
     return vip
 
-    
+print("********GARFIELD LAND************")
 print(f"Guest:{guest_name}")
 print(f"Age:{age}")
 print(f"height:{height}")
