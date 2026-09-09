@@ -1,0 +1,106 @@
+print("Welcome to Garfield land!")
+print("We will prepare your tickets")
+print("and what rides your able to ride")
+
+## Asks for guest name
+guest_name = input("What is your name?:")
+## converts string to int for age
+age = int(input("What is your age?:"))
+## converts string to int for height in inches
+height = int(input("How tall are you in inches?:"))
+## asks user if their ticket is premium or regular
+ticket = input("Regular or Premium?:")
+
+member = input("Are you park member? Y/N:")
+
+visiting_with_adult = input("Are you visiting with an adult? Y/N:")
+
+visit_time = input("Are you visiting at morning or evening?:")
+
+
+### Calculates the admission_price depending on the users age with seperated age groups.
+def calculate_admission(age):
+    if age <= 4:
+        admission_price = 0
+    elif (5 <= age <= 12):
+        admission_price = 15
+    elif(age >= 13 and age <= 64):
+        admission_price = 30
+    else:
+        admission_price = 20
+    
+    return admission_price
+
+## calculates the admission with the discounts depending on member or visits
+def calculate_discount(admission_price,member,visit_time):
+    if member == "Y":
+        discount = 5
+    elif visit_time == "evening":
+        discount = 3
+    elif(visit_time == "evening" and member == "Y"):
+        discount = 10
+    elif(admission_price == 0):
+        print("sorry no discount")
+        discount = 0
+    
+    else:
+        print("No discount")
+    return admission_price - discount
+
+
+### Checks if the user's age and height to find eligible rides for them
+def ride_level(age,height):
+    if height >= 54 and age >= 16:
+        requirement = "Extreme Rides"
+    elif  (height >= 48 and age >= 12):
+        requirement = "Thrill Rides"
+    elif (height >= 48 and age >= 8):
+        requirement = "Family Rides"
+    elif (height >= 32):
+        requirement = "Kiddie Rides"
+    else:
+        requirement = "no rides"
+    return requirement
+
+### Checks if the user needs an adult or not
+def check_supervision(age,visiting_with_adult):
+    if age >= 13:
+        adult = "approved"
+    elif age < 13 and visiting_with_adult:
+        adult = "approved"
+    else:
+        adult = "Adult required"
+    return adult
+
+def check_vip(ticket,age,member):
+    if(ticket == "Premium" and member == "Y"):
+        vip = "VIP ACCESS"
+    elif(age >= 65 and ticket == "Premium"):
+        vip = "VIP ACCESS"
+    else:
+        vip = "STANDARD ACCESS"
+    return vip
+
+    
+print(f"Guest:{guest_name}")
+print(f"Age:{age}")
+print(f"height:{height}")
+print(f"Ticket Type:{ticket}")
+print(f"Park Member {member}")
+admission_price = calculate_admission(age)
+print(f"initial Price: {admission_price}")
+discount_price = calculate_discount(admission_price,member,visit_time)
+print(f"Final Admission:{discount_price}")
+max_level = ride_level(age,height)
+print(f"Highest ride level:{max_level}")
+supervision = check_supervision(age,visiting_with_adult)
+print(f"SuperVision:{supervision}")
+### Checks if the ticket is premium or not
+if ticket == "Premium":
+    print("PREMIUM BONUS: YOU RECEIVE A FREE COCA COLA AND FAST PASS FOR 3 RIDES")
+else:
+    print("Regular Ticket:Enjoy!")        
+vip = check_vip(ticket,age,member)
+print(f"VIP STATUS:{vip}")
+
+    
