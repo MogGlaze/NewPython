@@ -45,7 +45,9 @@ def calculate_discount(admission_price,member,visit_time):
     
     else:
         print("No discount")
+        ### Returns final admission price
     return admission_price - discount
+    
 
 
 ### Checks if the user's age and height to find eligible rides for them
@@ -71,7 +73,7 @@ def check_supervision(age,visiting_with_adult):
     else:
         adult = "Adult required"
     return adult
-
+### Checks if the user is a VIP through ticket,age and if member
 def check_vip(ticket,age,member):
     if(ticket == "Premium" and member == "Y"):
         vip = "VIP ACCESS"
@@ -80,7 +82,7 @@ def check_vip(ticket,age,member):
     else:
         vip = "STANDARD ACCESS"
     return vip
-
+### Prints the entire receipt
 print("********GARFIELD LAND************")
 print(f"Guest:{guest_name}")
 print(f"Age:{age}")
