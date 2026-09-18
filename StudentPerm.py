@@ -79,6 +79,71 @@ def check_eligibility(overall_grade,student_attendance,missing_assignments):
     
     else:
         return "Academic Eligibility: NOT ELIGIBLE, REASON: Overall Grade is too Low"
+
+def check_high_honors(overall_grade,student_attendance,missing_assignments):
+    if overall_grade >= 90:
+        if student_attendance >= 95:
+
+            if missing_assignments == 0:
+                return "YES, HONOR STUDENT"
+
+            else:
+                return "SORRY NO, YOUR MISSING ASSIGNMENTS"
+
+        else:
+             return "Sorry, Attendance is not eligible"
+
+    else:
+            return "Sorry Grade is not eligible for honors"
+
+def check_goodstanding(overall_grade,student_attendance):
+     if overall_grade >= 70 and student_attendance >= 90:
+          return "Good Standing: YES"
+     else:
+          return "Good Standing: NO"
+
+
+def check_support(overall_grade,student_attendance):
+     if overall_grade < 70 or student_attendance < 80:
+          return "Additional Support: RECOMMENDED"
+     else:
+          return "Additional Support: NOT RECOMMENDED"
+
+student_user = "student"
+student_pin = 1234
+User = input("Enter Username: ")
+Pin = int(input("Enter Pin: "))
+
+if User == student_user:
+     if Pin == student_pin:
+          print("Login Successful")
+     else:
+          print("Login Unsucessful: Incorrect PIN")
+
+else:
+     print("Login Unsuccessful: Incorrect User")
+
+
+def grade_level_message(grade_level):
+     if grade_level == 9:
+          return "Welcome to your freshman year!"
+     elif grade_level == 10:
+          return "Keep building your skills!"
+     elif grade_level == 11:
+          return "Junior Year- Keep Pushing!"
+     elif grade_level == 12:
+          return "Senior Year- finish strong!"
+     else:
+          return "Invalid grade level."
+
+
+def strongest_category(avg_assignment,avg_quiz,avg_test):
+     if avg_assignment > (avg_quiz and avg_test):
+          return "Strongest Category: Assignments"
+     elif avg_test
+
+
+            
         
             
             
