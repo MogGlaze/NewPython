@@ -10,10 +10,10 @@ print("=========STUDENT PERFORMANCE ANALYZER========")
 name = input("StudentName: ")
 
 ##ASks for Grade level
-grade_level = input("Grade Level: ")
+grade_level = int(input("Grade Level: "))
 
 #Asks for student assignment average
-avg_assignemnt = float(input("Assignment Average: "))
+avg_assignmnt = float(input("Assignment Average: "))
 
 ## asks for students quiz average
 avg_quiz = float(input("Quiz Average: "))
@@ -27,11 +27,13 @@ student_attendance = float(input("Attendance Percentage: "))
 ## asks for number of missing assignments
 missing_assignments = int(input("Missing Assignments: "))
 
+
+## Calculates assignment,quiz and test average into a 100% CUP
 def calculate_grade(avg_assignment,avg_quiz,avg_test):
     overall_grade = avg_assignment * 0.3 + avg_quiz * 0.3 + avg_test * 0.4
     return overall_grade
 
-
+### Converts grade into letter
 def letter_grade(overall_grade):
     if overall_grade >= 90:
         return "Letter Grade: A"
@@ -43,7 +45,7 @@ def letter_grade(overall_grade):
         return "Letter Grade: D"
     else:
         return "Letter Grade: F"
-    
+    ### Converts attendance into attendance score
 def attendance_status(student_attendance):
     if student_attendance >= 95:
         return "Attendance Status: Excellent"
@@ -53,8 +55,8 @@ def attendance_status(student_attendance):
         return "Attendance Status: Warning"
     else:
         return "Attendance Status: Poor"
-    
-def assignment_status(missing_assignments):
+    ### Tellls if the student is missing an assigment(s)
+def missing_status(missing_assignments):
     if missing_assignments == 0:
         return "Missing Assignment Status: Perfect"
     elif missing_assignments == (1 or 2):
@@ -63,11 +65,11 @@ def assignment_status(missing_assignments):
         return "Missing Assignment Status: Warning"
     else:
         return "Missing Assignment Status: Critical"
-    
+    ###
 def check_eligibility(overall_grade,student_attendance,missing_assignments):
     if overall_grade >= 70:
         if student_attendance >= 90:
-            if missing_assignments > 2:
+            if missing_assignments < 2:
                 return "Academic Eligibility: ELIGIBLE, STUDENT PASSED ALL 3 REQUIREMENTS"
             
             else:
@@ -140,11 +142,66 @@ def grade_level_message(grade_level):
 def strongest_category(avg_assignment,avg_quiz,avg_test):
      if avg_assignment > (avg_quiz and avg_test):
           return "Strongest Category: Assignments"
-     elif avg_test
+     elif avg_test > ( avg_assignmnt and avg_quiz):
+         return "Strongest Category: Test"
+     else:
+         return "Strongest Category: Quiz"
 
 
-            
-        
-            
-            
-    
+def check_advanced_status(overall_grade,student_attendance,missing_assignments):
+    if (overall_grade >= 90 and student_attendance >= 95) or (overall_grade >= 85 and missing_assignments == 0):
+        return "OUTSTANDING STUDENT"
+    else:
+        return "STANDARD STUDENT"
+
+
+
+print("=======STUDENT'S SUMMARY========")
+print(f"Student: {name}")
+print(f"Grade Level: {grade_level}")
+
+print(f"Assignment Average: {avg_assignmnt}")
+print(f"Quiz Average: {avg_quiz}")
+print(f"Test Average: {avg_test}")
+
+overall = calculate_grade(avg_assignmnt,avg_quiz,avg_test)
+print(f"Overall Grade: {overall}")
+
+print(f"Attendance: {student_attendance} ")
+print(f"Missing Assignments: {missing_assignments}")
+
+status = check_advanced_status(overall,student_attendance,missing_assignments)
+print(f"Advanced Status: {status}")
+
+letter = letter_grade(overall)
+print(letter)
+
+attendance = attendance_status(student_attendance)
+print(attendance)
+
+missing = missing_status(missing_assignments)
+print(missing)
+
+elgibility = check_eligibility(overall,student_attendance,missing_assignments)
+print(elgibility)
+
+high = check_high_honors(overall,student_attendance,missing_assignments)
+print(high)
+
+good_standing = check_goodstanding(overall,student_attendance)
+print(good_standing)
+
+support = check_support(overall,student_attendance)
+print(support)
+
+grade = grade_level_message(grade_level)
+print(grade)
+
+category = strongest_category(avg_assignmnt,avg_quiz,avg_test)
+print(category)
+
+advanced = check_advanced_status(overall,student_attendance,missing_assignments)
+print(advanced)
+
+
+
