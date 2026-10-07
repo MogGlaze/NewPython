@@ -1,60 +1,28 @@
-import time
+import random ## Gives us access to the random function allowing us to generate a random number
 
-def Stats(name,gender,money):
-    inventory = []
-    myStats = {"Name:" :name,
-               "Gender": gender,
-               "Money": money,
-               "Inventory" : inventory
-               }
+random_number = random.randint(1,10) ### Generates a random number between 1 and 10
+
+previous_guesses = [] ## Stores the previous gusses in this list
+
+user_guess = 0
+
+while(user_guess != random_number): ## repeats the user process of asking a number.
+    user_guess = int(input("Enter a number between 1-10: "))
+    print(f"Previous Gusses: {previous_guesses}")
+    if(user_guess not in previous_guesses):
     
-    
-def welcome(name):
-    print("Welcome to school simulator ")
-    time.sleep(2)
-    print(f"All you have to do is complete as many tasks and win")
-    time.sleep(2)
-    print(f"It's going to be a good time,{name}")
-    
-    
-    
-def Morning(name):
-    print("Ugh its another boring ass day and you got school today")
-    time.sleep(2)
-    bed = input("It's 6 am and you got another day(Do you want to wake up and catch the bus? Y/N)")
-    if bed == "N":
+        if(user_guess > 10 or user_guess <= 0):
+            print("Invalid input")
+        elif(user_guess > random_number):
+            previous_guesses.append(user_guess)
+            print("Too High")
+        elif(user_guess < random_number):
+            previous_guesses.append(user_guess)
+            print("Too Low")
+        else:
+            print("congrats You win!!!!")
+            previous_guesses.append(user_guess)
+            print(f"Your Guesses:{previous_guesses}")
         
-        print("WHAT THE FU$K!?, WHAT DO YOU MEAN NO!!?")
-        sleep = input("Sleep or realize to wake up")
-        if "zzz" in sleep:
-            print("okay fine, whatever be late!")
-    
-    elif bed == "Y":
-        print(f"Alright lets put some clothes on {name}")
-        print("We got a big day today")
-        print("You look in your closet and find 3 pieces of clothing with your favorite shorts") 
-        clothes = input("Choose an option. 1.Clown Costume, 2. Formal suit, 3. Casual shirt") 
-    
-    
-print("Alright lets get moving to the most important meal of the day.")
-breakfast = int(input("What would you like to eat?(1.Cereal,2. Ribeye Steak, 3. Banana and yogurt, 4. Nothing): "))
-if breakfast == 4:
-    print("Okay, looks like your going to starve, don't come crying to me")
-
-
-print("Next, I find it important that we do a quick jog around the block before the school bus arrives")
-jog = input("Would you like to jog, your looking a bit fat")
-
-if jog == 'YES':
-    print("good choice,lets get rid of those diabetes")
-    print("*****JOGGING******")
-    print("Hey fat turd stop jogging we are going to be late")
-jog_continue =chr(input("Keep Jogging or Go to the bus"))
-if jog_continue == "Yes":
-    print("HEY, SORR")
-
-
-
-
-    
-welcome("Brandon")
+            
+            
